@@ -1,4 +1,5 @@
 ﻿using Quotes.Domain;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,15 +7,18 @@ namespace Quotes.Infrastructure.Repository
 {
     public interface IQuoteRepository
     {
-        Task<List<Quote>> FindAllAsync();
+        Quote GetRandomQuote(); 
+        List<Quote> FindAllAsync();
 
-        Task<Quote> FindByIdAsync(int id);
+        Task<Quote> FindByIdAsync(Guid id);
 
         Task<List<Quote>> FindByAuthorAsync(string author);
 
         Task<List<Quote>> FindByCategoryAsync(string category);
 
-        Task<bool> RemoveAsync(int id);
+        Task<bool> RemoveAsync(Guid id);
+
+        void RemoveRange(List<Quote> quotes);
 
         Task<bool> CreateAsync(Quote entity);
 

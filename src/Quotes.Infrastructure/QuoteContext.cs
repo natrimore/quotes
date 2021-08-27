@@ -6,14 +6,32 @@ using System.Text;
 
 namespace Quotes.Infrastructure
 {
-    public class QuoteContext : DbContext
+    public class QuoteContext
     {
-        public QuoteContext(DbContextOptions<QuoteContext> options) : base(options)
+        public QuoteContext()
         {
-
+            Quotes = new List<Quote>();
+            Users = new List<User>();
+            LoadQuotes();
         }
 
-        public DbSet<Quote> Quotes { get; set; }
-        public DbSet<User> Users { get; set; }
+        public List<Quote> Quotes { get; set; }
+        public List<User> Users { get; set; }
+
+        public void LoadQuotes()
+        {
+            Quote quote = new Quote
+            {
+                Author = "1",
+                Category = "2",
+                Created = DateTime.Now,
+                QuoteName = "bir narsalar",
+                Id = Guid.NewGuid()
+            };
+
+            Quotes.Add(quote);
+        }
     }
+
+    
 }
