@@ -17,7 +17,10 @@ namespace Quotes.API.Handlers
         }
         public async Task HandleAsync(DeleteQuote command)
         {
-            await _quoteRepository.RemoveAsync(command.Id);  
+            if (command.Id != Guid.Empty) 
+            {
+                await _quoteRepository.RemoveAsync(command.Id);  
+            }
         }
     }
 }

@@ -24,8 +24,12 @@ namespace Quotes.API.Handlers
         }
         public async Task HandleAsync(CreateQuote command)
         {
-            var entity = new Domain.Quote() { Author = command.Author, Category = command.Category, QuoteName = command.QuoteName };
-            await _quoteRepository.CreateAsync(entity);
+            var created = command.Created != null ? command.Created : DateTime.Now;
+            var entity = new Domain.Quote() { Id = Guid.NewGuid(), Author = command.Author, Category = command.Category, QuoteName = command.QuoteName,  Created = created };
+            if (!await _quoteRepository.CreateAsync(entity))
+            {
+                throw new Exception("cannot save data");
+            }
         }
     }
 }

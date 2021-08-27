@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Quotes.API</name>
+    </assembly>
+    <members>
+        <member name="M:Quotes.API.Controllers.QuotesController.GetAllAsync">
+            <summary>
+            Get all quotes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.QuotesController.GetByCategoryASync(System.String)">
+            <summary>
+            Get by category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.QuotesController.GetRandomAsync">
+            <summary>
+            Get random quote
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.QuotesController.PostAsync(Quotes.API.Commands.CreateQuote)">
+            <summary>
+            Create new quote
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.QuotesController.PutAsync(Quotes.API.Commands.UpdateQuote)">
+            <summary>
+            Update quote
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.QuotesController.DeleteAsync(System.Guid)">
+            <summary>
+            Delete by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quotes.API.Controllers.UsersController.PostAsync(Quotes.API.Commands.SubscribeUser)">
+            <summary>
+            Subscribe or unsubscribe for daily quotes
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

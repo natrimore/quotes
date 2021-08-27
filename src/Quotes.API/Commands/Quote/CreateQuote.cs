@@ -1,8 +1,5 @@
 ﻿using Quotes.Shared.Dispatchers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Quotes.API.Commands
 {
@@ -11,5 +8,6 @@ namespace Quotes.API.Commands
         public string QuoteName { get; set; }
         public string Author { get; set; }
         public string Category { get; set; }
+        public DateTime Created { get; set; }
     }
 }

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Quote.ViewModels\Quotes.ViewModels.csproj" />
     <ProjectReference Include="..\Quotes.Infrastructure\Quotes.Infrastructure.csproj" />
+    <ProjectReference Include="..\Quotes.Shared\Quotes.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,18 +14,20 @@ namespace Quotes.API.Handlers
     {
         private readonly IQuoteRepository _quoteRepository;
         private readonly IMapper _mapper;
-
-        public GetQuotesHandler(IQuoteRepository quoteRepository, IMapper mapper)
+        private readonly IServiceProvider _serviceProvider;
+        public GetQuotesHandler(IQuoteRepository quoteRepository, IMapper mapper, IServiceProvider serviceProvider)
         {
             _quoteRepository = quoteRepository ??
                 throw new ArgumentNullException(nameof(quoteRepository));
 
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
+
+            _serviceProvider = serviceProvider;
         }
         public async Task<PagedResult<QuoteViewModel>> HandleAsync(GetQuotes query)
         {
-            var entities = await _quoteRepository.FindAllAsync();
+            var entities = _quoteRepository.FindAllAsync();
 
             var models = _mapper.Map<List<QuoteViewModel>>(entities);
 

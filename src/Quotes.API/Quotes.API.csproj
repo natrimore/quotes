@@ -1,22 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>E:\Projects\own projects\quotes\src\Quotes.API\Quotes.API.xml</DocumentationFile>
+	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
 		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.17" />
 		<PackageReference Include="Hangfire.Core" Version="1.7.24" />
 		<PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
-		<!--<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />-->
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.18" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.18" />
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
 
 	</ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="Profiles\" />
-    <Folder Include="Swagger\" />
-  </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Quote.ViewModels\Quotes.ViewModels.csproj" />
+	  <ProjectReference Include="..\Quotes.Domain\Quotes.Domain.csproj" />
+	  <ProjectReference Include="..\Quotes.Infrastructure\Quotes.Infrastructure.csproj" />
+	  <ProjectReference Include="..\Quotes.Service\Quotes.Service.csproj" />
+	  <ProjectReference Include="..\Quotes.Shared\Quotes.Shared.csproj" />
+	</ItemGroup>
 
 
 </Project>

@@ -23,9 +23,9 @@ namespace Quotes.API.Handlers
         }
         public async Task<QuoteViewModel> HandleAsync(GetRandomQuote query)
         {
-            var entities = await _quoteRepository.FindAllAsync();
+            var entity = _quoteRepository.GetRandomQuote();
 
-            var model = _mapper.Map<QuoteViewModel>(entities);
+            var model = _mapper.Map<QuoteViewModel>(entity);
 
             return model;
         }
