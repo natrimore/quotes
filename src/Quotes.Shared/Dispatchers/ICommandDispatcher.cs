@@ -7,6 +7,6 @@ namespace Quotes.Shared.Dispatchers
 {
     public interface ICommandDispatcher
     {
-        Task SendAsync<T>(T command) where T : ICommand;
+        Task SendAsync<TCommand>(TCommand command) where TCommand : ICommand;
     }
 }

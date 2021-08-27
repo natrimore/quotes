@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Quotes.Shared.Swagger
 {
     public static class Extensions
     {
-        public static IServiceCollection AddSwaggerDocs(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerDocs(this IServiceCollection services, string xmlPath)
         {
             SwaggerOptions options;
             using (var serviceProvider = services.BuildServiceProvider())
@@ -18,6 +20,8 @@ namespace Quotes.Shared.Swagger
                 options = configuration.GetOptions<SwaggerOptions>("swagger");
             }
 
+            // Register generator and it's dependencies
+
             if (!options.Enabled)
             {
                 return services;
@@ -25,16 +29,18 @@ namespace Quotes.Shared.Swagger
 
             return services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(options.Name, new Info { Title = options.Title, Version = options.Version });
+                c.IncludeXmlComments(xmlPath);
+
+                c.SwaggerDoc(options.Name, new OpenApiInfo { Title = options.Title, Version = options.Version });
                 if (options.IncludeSecurity)
                 {
-                    c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                     {
                         Description =
                             "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                         Name = "Authorization",
-                        In = "header",
-                        Type = "apiKey"
+                        //In = "header",
+                        //Type = "apiKey"
                     });
                 }
             });

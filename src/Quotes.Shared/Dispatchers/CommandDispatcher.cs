@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Quotes.Shared.Handlers;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Quotes.Shared.Dispatchers
@@ -13,9 +14,9 @@ namespace Quotes.Shared.Dispatchers
         {
             _serviceProvider = serviceProvider;
         }
-        public async Task SendAsync<T>(T command) where T : ICommand
+        public async Task SendAsync<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var handler = _serviceProvider.GetService<ICommandHandler<ICommand>>();
+            var handler = _serviceProvider.GetRequiredService<ICommandHandler<TCommand>>();
             await handler.HandleAsync(command);
         }
     }
