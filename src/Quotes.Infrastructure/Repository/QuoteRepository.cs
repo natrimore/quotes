@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Quotes.Domain;
+﻿using Quotes.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,6 @@ namespace Quotes.Infrastructure.Repository
         public async Task<bool> CreateAsync(Quote entity)
         {
             _context.Quotes.Add(entity);
-            //_context.SaveChanges();
             return true;
         }
 
@@ -79,9 +77,8 @@ namespace Quotes.Infrastructure.Repository
             //return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public async Task<Quote> UpdateAsync(Quote entity)
+        public async Task<bool> UpdateAsync(Quote entity)
         {
-            //entity = _context.Quotes.(entity).Entity;
             var index = _context.Quotes.FindIndex(f => f.Id == entity.Id);
             if (index != -1)
             {
@@ -94,10 +91,10 @@ namespace Quotes.Infrastructure.Repository
                     QuoteName = entity.QuoteName
                 };
 
-                return entity;
+                return true;
             }
             
-            return null;
+            return false;
         }
     }
 }

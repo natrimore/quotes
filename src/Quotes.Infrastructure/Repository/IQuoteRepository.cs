@@ -22,7 +22,7 @@ namespace Quotes.Infrastructure.Repository
 
         Task<bool> CreateAsync(Quote entity);
 
-        Task<Quote> UpdateAsync(Quote entity);
+        Task<bool> UpdateAsync(Quote entity);
 
         Task<bool> SaveChangesAsync();
     }
