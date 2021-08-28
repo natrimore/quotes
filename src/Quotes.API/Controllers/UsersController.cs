@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Quote.ViewModels;
 using Quotes.API.Commands;
+using Quotes.API.Queries;
 using Quotes.Shared.Dispatchers;
+using Quotes.Shared.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +22,15 @@ namespace Quotes.API.Controllers
         {
             _dispatcher = dispatcher ??
                 throw new ArgumentNullException(nameof(dispatcher));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<PagedResult<UserViewModel>>> GetAllAsync()
+        {
+            var query = new GetUsers();
+            var result = await _dispatcher.QueryAsync(query);
+
+            return Ok(result);
         }
 
         /// <summary>
