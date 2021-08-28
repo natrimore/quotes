@@ -34,6 +34,7 @@ namespace Quotes.API.Helpers
 
         public void DeleteQuote()
         {
+            Console.Write("--- Delete quote worker ---");
             var entities = _quoteRepository.FindAllAsync();
             var outdatedQuotes = new List<Domain.Quote>();
 
@@ -42,6 +43,7 @@ namespace Quotes.API.Helpers
             {
                 if (f.Created < outDated)
                 {
+                    Console.WriteLine($"Deleted: {f.QuoteName} with date: {f.Created}");
                     outdatedQuotes.Add(f);
                 }
             });
@@ -51,6 +53,8 @@ namespace Quotes.API.Helpers
 
         public void Subscribe()
         {
+            Console.WriteLine("--- Send SMS to subscribed users ---");
+
             var users = _userRepository.GetAll();
 
             foreach (var user in users)
